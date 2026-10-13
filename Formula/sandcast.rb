@@ -12,6 +12,11 @@ class Sandcast < Formula
   head "ssh://git@github.com/carteratl/sandcast-controller.git", branch: "main"
   license :cannot_represent
 
+  # `detected_python_shebang` is this mixin's, not Formula's (the Formula
+  # Cookbook, "Python"); without it the install fails with NameError — as it
+  # did at the first install from this tap, 2026-10-12.
+  include Language::Python::Shebang
+
   depends_on "python@3.13"
 
   def install
